@@ -62,4 +62,10 @@ fn main() {
     let day10_part2 = aoc2023::day10::part02("./puzzle_input/day10.txt");
     println!("\t\tpart 2: {day10_part2}");
     */
+
+    println!("\tDay 11: ");
+    let day11_part1 = aoc2023::day11::part01("./puzzle_input/day11.txt");
+    println!("\t\tpart 1: {day11_part1}");
+    let day11_part2 = aoc2023::day11::part02("./puzzle_input/day11.txt", 1000000);
+    println!("\t\tpart 2: {day11_part2}");
 }
