@@ -69,5 +69,7 @@ mod tests {
 
         let day13_part1 = aoc2023::day13::part01("./test_puzzle_input/day13_test.txt");
         assert_eq!(day13_part1, 405);
+        let day13_part2 = aoc2023::day13::part02("./test_puzzle_input/day13_test.txt");
+        assert_eq!(day13_part2, 400);
     }
 }
