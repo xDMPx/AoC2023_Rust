@@ -13,6 +13,55 @@ pub fn part01(file_path: &str) -> usize {
     visited.len()
 }
 
+pub fn part02(file_path: &str) -> usize {
+    let file = std::fs::read_to_string(file_path).unwrap();
+    let map: Vec<Vec<char>> = file.lines().map(|line| line.chars().collect()).collect();
+
+    let mut largest_et = 0;
+    for i in 0..map.len() {
+        let beam = Beam {
+            pos: (i, 0),
+            direction: Direction::RIGHT,
+        };
+
+        let mut visited = vec![];
+        traverse_map(beam, &map, &mut visited);
+        largest_et = largest_et.max(visited.len());
+    }
+    for i in 0..map.len() {
+        let beam = Beam {
+            pos: (i, map[0].len() - 1),
+            direction: Direction::LEFT,
+        };
+
+        let mut visited = vec![];
+        traverse_map(beam, &map, &mut visited);
+        largest_et = largest_et.max(visited.len());
+    }
+    for i in 0..map[0].len() {
+        let beam = Beam {
+            pos: (0, i),
+            direction: Direction::DOWN,
+        };
+
+        let mut visited = vec![];
+        traverse_map(beam, &map, &mut visited);
+        largest_et = largest_et.max(visited.len());
+    }
+    for i in 0..map[0].len() {
+        let beam = Beam {
+            pos: (map.len() - 1, i),
+            direction: Direction::UP,
+        };
+
+        let mut visited = vec![];
+        traverse_map(beam, &map, &mut visited);
+        largest_et = largest_et.max(visited.len());
+    }
+
+    largest_et
+}
+
 fn traverse_map(beam: Beam, map: &Vec<Vec<char>>, visited: &mut Vec<(usize, usize)>) {
     let pos = beam.pos;
     let beams = advance_beam(beam, &map, visited);
